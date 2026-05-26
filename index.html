@@ -1259,7 +1259,7 @@
                     </div>
                     <div>
                         <span class="product-price">450EGP</span>
-                        <button class="btn-buy" onclick="addToCart('SOVRAN SAUVAGE', 180, 'Gemini_Generated_Image_uav6jquav6jquav6.png')">أضف إلى كولكشن السُّلطة</button>
+                        <button class="btn-buy" onclick="addToCart('SOVRAN SAUVAGE', 450, 'Gemini_Generated_Image_uav6jquav6jquav6.png')">أضف إلى كولكشن السُّلطة</button>
                     </div>
                 </div>
             </div>
@@ -1277,7 +1277,7 @@
                     </div>
                     <div>
                         <span class="product-price">350EGP</span>
-                        <button class="btn-buy" onclick="addToCart('SOVRAN STRONGER', 180, '1001771881.png')">أضف إلى كولكشن السُّلطة</button>
+                        <button class="btn-buy" onclick="addToCart('SOVRAN STRONGER', 350, '1001771881.png')">أضف إلى كولكشن السُّلطة</button>
                     </div>
                 </div>
             </div>
@@ -1297,7 +1297,7 @@
                     
                     <div>
                         <span class="product-price">200EGP</span>
-                        <button class="btn-buy" onclick="addToCart('SOVRAN BIANCO LATTE', 220, '1001771889.png')">أضف إلى كولكشن السُّلطة</button>
+                        <button class="btn-buy" onclick="addToCart('SOVRAN BIANCO LATTE', 200, '1001771889.png')">أضف إلى كولكشن السُّلطة</button>
                     </div>
                 </div>
             </div>
@@ -1316,7 +1316,7 @@
                     </div>
                     <div>
                         <span class="product-price">40EGP</span>
-                        <button class="btn-buy" onclick="addToCart('SOVRAN SAUVAGE', 195, '1001771909.png')">أضف إلى كولكشن السُّلطة</button>
+                        <button class="btn-buy" onclick="addToCart('SOVRAN SAUVAGE', 40, '1001771909.png')">أضف إلى كولكشن السُّلطة</button>
                     </div>
                 </div>
             </div>
@@ -1727,6 +1727,76 @@
     z-index: 10000 !important;
     transition: right 0.3s ease !important;
 }
+<style>
+/* إخفاء السلة تماماً وتحديد مقاسها خارج الشاشة من جهة الشمال مع الأنميشن الجديد */
+.cart-drawer {
+    position: fixed !important;
+    top: 0 !important;
+    left: -100% !important; /* مطرودة بره الشاشة شمال */
+    right: auto !important;  /* إلغاء أي توجيه لليمين */
+    width: 350px !important;
+    max-width: 85% !important;
+    height: 100vh !important;
+    background: #0d0d0d !important;
+    z-index: 10000 !important;
+    
+    /* الأنميشن المعدل: الحركة هتاخد 0.4 ثانية مع تأثير انسيابي مرن جداً */
+    transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important; 
+    
+    /* إضافة تأثير ظل خفيف وناعم خلف السلة عشان يفصلها عن الموقع */
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5) !important;
+}
+/* إظهار السلة ودخولها بالأنميشن من الشمال فوراً عند الضغط على التاج */
+.cart-drawer.active,
+.cart-drawer.open {
+    left: 0 !important;
+    right: auto !important; /* تأكيد إلغاء اليمين */
+}
+
+/* إلغاء واختفاء الغيمة السوداء تماماً ونهائياً لمنع حجب الشاشة */
+.cart-overlay, .overlay {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // ربط أيقونة السلة (التاج) بالفتح ومنع الريفريش
+    const cartBtn = document.querySelector('.cart-icon') || document.getElementById('cartBtn') || document.querySelector('a[href*="cart"]');
+    if (cartBtn) {
+        cartBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // منع إعادة تحميل الصفحة
+            toggleCart(true);   // فتح السلة
+        });
+    }
+
+    // ربط زر الإغلاق (X) بقفل السلة
+    const closeBtn = document.querySelector('.close-cart') || document.querySelector('.cart-drawer .close') || document.querySelector('.cart-drawer [class*="close"]');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleCart(false);  // إغلاق السلة
+        });
+    }
+});
+
+// الدالة المسؤولة عن إضافة وحذف كلاسات الظهور
+function toggleCart(isOpen) {
+    const drawer = document.querySelector('.cart-drawer') || document.getElementById('cartDrawer');
+    if (drawer) {
+        if (isOpen) {
+            drawer.classList.add('active');
+            drawer.classList.add('open');
+        } else {
+            drawer.classList.remove('active');
+            drawer.classList.remove('open');
+        }
+    }
+}
+</script>
 </style>
 </body>
 </html>
