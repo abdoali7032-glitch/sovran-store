@@ -1798,10 +1798,16 @@ function toggleCart(isOpen) {
 }
 </script>
 </style>
-    <style>
-/* السطر ده بيجبر التليفون يقص أي حاجة برة حدود الشاشة وميعملش مساحات سوداء زيادة */
+<style>
+/* إجبار الصفحة وكل حاجة جواها إنها تلتزم بحدود شاشة الموبايل تماماً */
 html, body {
+    max-width: 100% !important;
     overflow-x: hidden !important;
+}
+
+/* السطر السحري: طول ما السلة مش واخدة كلاس active (يعني مقفولة) تختفي تماماً عشان الموبايل ما يعملش الفراغ الأسود */
+.cart-drawer:not(.active) {
+    display: none !important;
 }
 </style>
 </body>
