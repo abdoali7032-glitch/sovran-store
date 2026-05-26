@@ -1555,13 +1555,12 @@
             const drawer = document.getElementById('cartDrawer');
             const overlay = document.getElementById('cartOverlay');
             if (isOpen) {
-                drawer.classList.add('open');
-                overlay.classList.add('open');
-            } else {
-                drawer.classList.remove('open');
-                overlay.classList.remove('open');
-            }
-        }
+        drawer.classList.add('active');    
+        overlay.classList.add('active');   
+    } else {
+        drawer.classList.remove('active'); 
+        overlay.classList.remove('active'); 
+    }
 
         // إضافة العطور إلى السلة الفخمة
         function addToCart(perfumeName, price, imgUrl) {
