@@ -1258,7 +1258,7 @@
                         <h4 class="product-title">100ml</h4>
                     </div>
                     <div>
-                        <span class="product-price">450EPG</span>
+                        <span class="product-price">450EGP</span>
                         <button class="btn-buy" onclick="addToCart('SOVRAN SAUVAGE', 180, 'Gemini_Generated_Image_uav6jquav6jquav6.png')">أضف إلى كولكشن السُّلطة</button>
                     </div>
                 </div>
@@ -1554,9 +1554,6 @@
         function toggleCart(isOpen) {
             const drawer = document.getElementById('cartDrawer');
             const overlay = document.getElementById('cartOverlay');
-             function toggleCart(isOpen) {
-            const drawer = document.getElementById('cartDrawer');
-            const overlay = document.getElementById('cartOverlay');
             if (isOpen) {
                 drawer.classList.add('open');
                 overlay.classList.add('open');
@@ -1595,7 +1592,7 @@
                         <p>سلتك فارغة تماماً من عطور السُّلطة الملكية.</p>
                     </div>
                 `;
-                totalValueSpan.textContent = "0 USD";
+                totalValueSpan.textContent = "0 EGP";
                 return;
             }
 
@@ -1609,7 +1606,7 @@
                         <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/100/0c0c0c/d4af37?text=SOVRAN'">
                         <div class="cart-item-details">
                             <h4 class="cart-item-title">${item.name}</h4>
-                            <span class="cart-item-price">${item.price} USD</span>
+                            <span class="cart-item-price">${item.price} EGP</span>
                         </div>
                         <button class="remove-item" onclick="removeFromCart(${item.id})">
                             <i class="fa-solid fa-trash-can"></i>
@@ -1619,7 +1616,7 @@
                 container.insertAdjacentHTML('beforeend', itemHTML);
             });
 
-            totalValueSpan.textContent = `${total} USD`;
+            totalValueSpan.textContent = `${total} EGP`;
         }
 
         // حذف عنصر من السلة
@@ -1679,7 +1676,7 @@
             toggleCart(false);
 
             // إرسال توست نجاح فخم للغاية
-            showLuxuryToast("تم حجز طلب السيادة 👑", `سجلنا طلبك الاستثنائي بقيمة ${total} USD. سنتواصل معك فوراً لتأكيد التسليم الملكي.`);
+            showLuxuryToast("تم حجز طلب السيادة 👑", `سجلنا طلبك الاستثنائي بقيمة ${total} EGP. سنتواصل معك فوراً لتأكيد التسليم الملكي.`);
         }
 
         // تأثير الظهور الناعم والتمرير الذكي (Scroll Reveal using IntersectionObserver)
@@ -1715,6 +1712,20 @@
     width: 350px !important;
     max-width: 85% !important;
     height: 100vh !important;
+}
+</style>
+<style>
+/* إخفاء السلة تماماً وطردها خارج الشاشة بشكل افتراضي */
+.cart-drawer {
+    position: fixed !important;
+    top: 0 !important;
+    right: -100% !important;
+    width: 350px !important;
+    max-width: 85% !important;
+    height: 100vh !important;
+    background: #0d0d0d !important;
+    z-index: 10000 !important;
+    transition: right 0.3s ease !important;
 }
 </style>
 </body>
